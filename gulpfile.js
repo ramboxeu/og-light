@@ -24,8 +24,8 @@ gulp.task(`css`, () => {
     gulp.src(`./css/*`).pipe(gulp.dest('./css')).pipe(connect.reload());
 });
 
-gulp.task(`img`, () => {
-    gulp.src(`./img/*`).pipe(gulp.dest('./img')).pipe(connect.reload());
+gulp.task(`resources`, () => {
+    gulp.src(`./resources/*`).pipe(gulp.dest('./resources')).pipe(connect.reload());
 });
 
 // Experimental version! Use it with responsibility
@@ -45,5 +45,5 @@ gulp.task(`release`, () => {
 
 gulp.watch([`./src/**/*.ts`], [`compile`]);
 gulp.watch([`./index.html`], [`html`]);
-gulp.watch([`./img/*`], [`img`]);
+gulp.watch([`./resources/*`], [`resources`]);
 gulp.watch([`./css/*`], [`css`]);
