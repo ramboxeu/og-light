@@ -4,10 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="shortcut icon" href="resources/img/light-logo-32x32.png" type="image/png">
     <title>Light - v 1.0</title>
 </head>
 <body>
-    <h1>LIGHT</h1>
-    <h1>BLUG</h1>
+    <nav>
+        <div class="nav-wrapper light-orange">
+            <img src="resources/img/light-logo-64x64.png" width="60" height="60" alt="Here's our logo">
+            <a class="brand-logo center">Light</a>
+        </div>
+    </nav>
+    
+    <div class="fixed-action-btn toolbar main-menu">
+        <a class="btn-floating btn-large red">
+          <i class="large material-icons">mic</i>
+        </a>
+        <ul>
+          <li><a class="">SOME RANDOM TEXT</a></li>
+        </ul>
+    </div>
+            
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="dist/build.js" type="text/javascript"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.FloatingActionButton.init(document.querySelector(`.main-menu`), {toolbarEnabled: true});
+        });
+        //M.AutoInit();
+    </script>
 </body>
 </html>
