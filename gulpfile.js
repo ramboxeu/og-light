@@ -45,10 +45,7 @@ gulp.task(`release`, () => {
 
 gulp.watch([`src/**/*.ts`], [`compile`]);
 gulp.watch([`./index.html`], [`html`]);
-<<<<<<< HEAD
 gulp.watch([`./resources/*`], [`resources`]);
 gulp.watch([`./css/*`], [`css`]);
-=======
 gulp.watch([`img/*`], [`img`]);
 gulp.watch([`css/*`], [`css`]);
->>>>>>> f325595d8dc50156d6c73bbecf1002c9e09f8f62
