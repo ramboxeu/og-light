@@ -1,0 +1,28 @@
+{
+  "name": "light",
+  "version": "1.0.0",
+  "description": "Personal assistant",
+  "main": "-",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-deploy-git": "^0.5.3",
+    "gulp-typescript": "^5.0.0-alpha.2",
+    "typescript": "^2.9.2",
+    "gulp-connect": "^5.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramboxeu/light.git"
+  },
+  "author": "Rambox",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ramboxeu/light/issues"
+  },
+  "homepage": "https://github.com/ramboxeu/light#readme"
+}
