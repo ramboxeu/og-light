@@ -43,7 +43,7 @@ gulp.task(`release`, () => {
     }
 });
 
-gulp.watch([`./src/**/*.ts`], [`compile`]);
+gulp.watch([`src/**/*.ts`], [`compile`]);
 gulp.watch([`./index.html`], [`html`]);
-gulp.watch([`./img/*`], [`img`]);
-gulp.watch([`./css/*`], [`css`]);
+gulp.watch([`img/*`], [`img`]);
+gulp.watch([`css/*`], [`css`]);
