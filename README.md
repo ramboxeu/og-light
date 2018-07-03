@@ -7,7 +7,7 @@ Light is your use(less)ful personal assistant. It will be able to provide answer
 None right now :(
 
 # Authors
-[ramboxeu](https://github.com/ramboxeu)
-[Monczak](https://github.com/Monczak)
+* [ramboxeu](https://github.com/ramboxeu)
+* [Monczak](https://github.com/Monczak)
 
 _Light - making your life brighter since 2018_
