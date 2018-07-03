@@ -1,4 +1,4 @@
-![Light Logo](/resources/img/light-logo-512x512.png)
+![Light Logo](/resources/img/light-logo-256x256.png)
 
 # What is Light?
 Light is your use(less)ful personal assistant. It will be able to provide answers to all the questions you've pondered upon for your entire life.
