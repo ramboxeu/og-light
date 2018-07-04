@@ -2,6 +2,73 @@
     background-color: #ff5901;
 }
 
+.light-logo {
+    padding: 3px;
+}
+
 .nav-wrapper > img {
     margin: 1px 1px 1px 1px;
+}
+
+.center-btn {
+    text-align: center;
+}
+
+.custom-center {
+    display: flex;
+    justify-content: center;
+}
+
+.snap-bottom {
+    position: fixed;
+    width: 100%;
+    bottom: -20px;
+}
+
+.small-margin {
+    margin: 4px;
+}
+
+.round-border {
+    border-radius: 50px;
+}
+
+.pop-up {
+    animation-name: pop-up;
+    animation-duration: 0.3s;
+}
+
+@keyframes pop-up {
+    0% {bottom: 0;}
+    100% {bottom: 64px; background: rgba(255, 255, 255, 0);}
+}
+
+.pop-down {
+    animation-name: pop-down;
+    animation-duration: 0.3s;
+}
+
+@keyframes pop-down {
+    0% {bottom: 64px; background: rgba(255, 255, 255, 0);}
+    100% {bottom: 0;}
+}
+
+.mic-fade-orange {
+    animation-name: mic-fade-orange;
+    animation-duration: 0.3s;
+}
+
+@keyframes mic-fade-orange {
+    0% {color: rgb(255, 255, 255);}
+    100% {color: rgb(255, 111, 0);}
+}
+
+.mic-fade-white {
+    animation-name: mic-fade-white;
+    animation-duration: 0.3s;
+}
+
+@keyframes mic-fade-white {
+    0% {color: rgb(255, 111, 0);}
+    100% {color: rgb(255, 255, 255);}
 }
