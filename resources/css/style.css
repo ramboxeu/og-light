@@ -34,7 +34,7 @@
 }
 
 .pop-up {
-    animation: pop-up 0.3s forwards;
+    animation: pop-up 0.3s forwards, mic-wave 3s 0.3s ease-in-out infinite;
 }
 
 @keyframes pop-up {
@@ -92,5 +92,23 @@
     }
     100% {
         color: rgb(255, 255, 255);
+    }
+}
+
+@keyframes mic-wave {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(20deg) scale(1.1) translate(0.2em, 0.2em);
+    }
+    50% {
+        transform: rotate(0deg) scale(1);
+    }
+    75% {
+        transform: rotate(-20deg) scale(1.1) translate(-0.2em, 0.2em);
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
     }
 }
