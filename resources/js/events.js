@@ -27,6 +27,11 @@ export default class Events {
                 document.getElementById("keyboard-icon").classList.remove("fade-in");
                 document.getElementById("keyboard-icon").classList.add("fade-out");
 
+                document.getElementById("speech-result").classList.remove("speech-result-finished");
+                document.getElementById("speech-result").classList.add("speech-result-begin");
+
+                document.getElementById("speech-result").innerHTML = "Listening...";
+
                 recActive = true;
 
                 SpeechToText.record(
@@ -65,6 +70,9 @@ export default class Events {
 
                 document.getElementById("keyboard-icon").classList.remove("fade-in");
                 document.getElementById("keyboard-icon").classList.add("fade-out");
+
+                document.getElementById("speech-result").classList.remove("speech-result-begin");
+                document.getElementById("speech-result").classList.add("speech-result-finished");
 
                 recActive = false;
 

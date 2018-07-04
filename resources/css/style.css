@@ -162,12 +162,16 @@
     }
 }
 
-.speech-box {
-
-}
-
 .speech-result {
     text-align: center;
     min-height: 65px;
     padding: 12px;
+}
+
+.speech-result-begin {
+    animation: fade-in 0.3s ease-in forwards;
+}
+
+.speech-result-finished {
+    animation: fade-out 0.3s ease-out forwards;
 }
