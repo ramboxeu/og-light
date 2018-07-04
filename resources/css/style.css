@@ -40,7 +40,7 @@
 
 @keyframes pop-up {
     0% {bottom: 0;}
-    100% {bottom: 64px; background: rgba(255, 255, 255, 0);}
+    100% {bottom: 64px; background: rgba(255, 255, 255, 0); }
 }
 
 .pop-down {
@@ -60,7 +60,7 @@
 
 @keyframes mic-fade-orange {
     0% {color: rgb(255, 255, 255);}
-    100% {color: rgb(255, 111, 0);}
+    100% {color: rgb(255, 111, 0); font-size: 3em;}
 }
 
 .mic-fade-white {
@@ -69,6 +69,6 @@
 }
 
 @keyframes mic-fade-white {
-    0% {color: rgb(255, 111, 0);}
+    0% {color: rgb(255, 111, 0); font-size: 3em;}
     100% {color: rgb(255, 255, 255);}
 }
