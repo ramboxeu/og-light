@@ -29,6 +29,10 @@ export default class Events {
 
                 document.getElementById("speech-result").classList.remove("speech-result-finished");
                 document.getElementById("speech-result").classList.add("speech-result-begin");
+                document.getElementById("speech-result").classList.remove("invisible");
+                document.getElementById("speech-result").classList.add("visible");
+                document.getElementById("input-container").classList.remove("speech-box");
+                document.getElementById("input-container").classList.add("flexible-speech-box");
 
                 document.getElementById("speech-result").innerHTML = "Listening...";
 
@@ -49,6 +53,7 @@ export default class Events {
                     },
                     // No audio
                     function(event) {
+                        // Toast about no audio detected here
                         console.log(`No audio detected`);
                     },
                     // No match
@@ -73,6 +78,17 @@ export default class Events {
 
                 document.getElementById("speech-result").classList.remove("speech-result-begin");
                 document.getElementById("speech-result").classList.add("speech-result-finished");
+
+                setTimeout(function() {
+                    document.getElementById("speech-result").classList.remove("visible");
+                    document.getElementById("speech-result").classList.add("invisible");
+                    if (document.getElementById("input-container").clientHeight > 65) {
+                        document.getElementById("input-container").classList.remove("flexible-speech-box");
+                        document.getElementById("input-container").classList.add("speech-box");
+                    }
+
+                    document.getElementById("speech-result").innerHTML = "";
+                }, 300);
 
                 recActive = false;
 
