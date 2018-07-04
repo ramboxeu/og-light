@@ -25,11 +25,20 @@
     </nav>
 
     <div class="row snap-bottom">
-        <div class="col s4 offset-s4 amber darken-4 custom-center round-border z-depth-2">
-            <a class="btn-floating btn-large amber darken-4 small-margin pop-up">
-                <i class="large material-icons mic-fade-orange">mic</i>
-            </a>
+        <div class="col s4 offset-s4 amber darken-4 custom-center round-border z-depth-2 speech-box">
+            <div style="position: absolute;">
+                <a id="speech-btn" class="speech-btn btn-floating btn-large amber darken-4 small-margin">
+                    <i id="mic-icon" class="large material-icons">mic</i>
+                </a>
+                <a id="keyboard-btn" class="btn-floating btn-large amber darken-4 small-margin">
+                    <i id="keyboard-icon" class="large material-icons">keyboard</i>
+                </a>
+            </div>
+            <span id="speech-result" class="speech-result white-text flow-text">Speech Output</span>
+
         </div>
+
+
     </div>
 
 <!--

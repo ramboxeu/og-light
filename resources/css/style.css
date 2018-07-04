@@ -37,6 +37,10 @@
     animation: pop-up 0.3s forwards, mic-wave 3s 0.3s ease-in-out infinite;
 }
 
+.pop-up-no-wave {
+    animation: pop-up 0.3s forwards;
+}
+
 @keyframes pop-up {
     0% {
         bottom: 0;
@@ -95,6 +99,32 @@
     }
 }
 
+.fade-out {
+    animation: fade-out 0.3s;
+}
+
+@keyframes fade-out {
+    0% {
+        color: rgba(255, 255, 255, 255);
+    }
+    100% {
+        color: rgba(255, 255, 255, 0);
+    }
+}
+
+.fade-in {
+    animation: fade-in 0.3s;
+}
+
+@keyframes fade-in {
+    0% {
+        color: rgba(255, 255, 255, 0);
+    }
+    100% {
+        color: rgba(255, 255, 255, 255);
+    }
+}
+
 @keyframes mic-wave {
     0% {
         transform: rotate(0deg) scale(1);
@@ -111,4 +141,33 @@
     100% {
         transform: rotate(0deg) scale(1);
     }
+}
+
+.light-logo:hover {
+    animation: light-logo-anim 0.5s;
+}
+
+@keyframes light-logo-anim {
+    0% {
+        transform: scale(1, 1);
+    }
+    25% {
+        transform: scale(1.1, 1)
+    }
+    75% {
+        transform: scale(1, 1.1)
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+.speech-box {
+
+}
+
+.speech-result {
+    text-align: center;
+    min-height: 65px;
+    padding: 12px;
 }
