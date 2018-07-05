@@ -13,8 +13,11 @@ export default class Events {
 
     static registerClickEvents() {
         document.getElementById("speech-btn").addEventListener("click", function() {
-            console.info("Button clicked!");
             Functions.toggleSpeech();
+        }, true);
+
+        document.getElementById("keyboard-btn").addEventListener("click", function() {
+            Functions.toggleKeyboard();
         }, true);
     }
 
