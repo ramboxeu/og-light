@@ -1,4 +1,5 @@
 import {TextToSpeech, SpeechToText} from './modules/speech.js';
+import Site from './modules/site.js';
 
 let recActive = false;
 
@@ -18,6 +19,8 @@ export default class Events {
                 document.getElementById("speech-btn").classList.remove("pop-down");
                 document.getElementById("speech-btn").classList.add("pop-up");
 
+                document.getElementById("speech-btn").classList.remove("tooltipped");
+
                 document.getElementById("mic-icon").classList.remove("mic-fade-white");
                 document.getElementById("mic-icon").classList.add("mic-fade-orange");
 
@@ -33,6 +36,9 @@ export default class Events {
                 document.getElementById("speech-result").classList.add("visible");
                 document.getElementById("input-container").classList.remove("speech-box");
                 document.getElementById("input-container").classList.add("flexible-speech-box");
+
+                Site.getTooltipsOn("speech-btn")[0].tooltipEl.classList.add("invisible");
+                Site.getTooltipsOn("keyboard-btn")[0].tooltipEl.classList.add("invisible");
 
                 document.getElementById("speech-result").innerHTML = "Listening...";
 
@@ -53,7 +59,7 @@ export default class Events {
                     },
                     // No audio
                     function(event) {
-                        // Toast about no audio detected here
+                        // Warn the user about no audio being detected here
                         console.log(`No audio detected`);
                     },
                     // No match
@@ -67,6 +73,8 @@ export default class Events {
                 document.getElementById("speech-btn").classList.remove("pop-up");
                 document.getElementById("speech-btn").classList.add("pop-down");
 
+                document.getElementById("speech-btn").classList.add("tooltipped");
+
                 document.getElementById("mic-icon").classList.remove("mic-fade-orange");
                 document.getElementById("mic-icon").classList.add("mic-fade-white");
 
@@ -79,6 +87,9 @@ export default class Events {
                 document.getElementById("speech-result").classList.remove("speech-result-begin");
                 document.getElementById("speech-result").classList.add("speech-result-finished");
 
+                Site.getTooltipsOn("speech-btn")[0].close();
+                Site.getTooltipsOn("keyboard-btn")[0].close();
+
                 setTimeout(function() {
                     document.getElementById("speech-result").classList.remove("visible");
                     document.getElementById("speech-result").classList.add("invisible");
@@ -86,9 +97,13 @@ export default class Events {
                         document.getElementById("input-container").classList.remove("flexible-speech-box");
                         document.getElementById("input-container").classList.add("speech-box");
                     }
-
                     document.getElementById("speech-result").innerHTML = "";
                 }, 300);
+
+                setTimeout(function() {
+                    Site.getTooltipsOn("speech-btn")[0].tooltipEl.classList.remove("invisible");
+                    Site.getTooltipsOn("keyboard-btn")[0].tooltipEl.classList.remove("invisible");
+                }, 350);
 
                 recActive = false;
 
