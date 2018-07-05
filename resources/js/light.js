@@ -19,7 +19,7 @@ making your life brighter since 2018
 by Rambox & Monczak
         `);
         console.info(`Starting...`);
-        Site.init({auto: true});
+        Site.init();
         Events.init();
         TextToSpeech.init();
         SpeechToText.init();

@@ -1,7 +1,7 @@
 import {Functions} from './modules/speech.js';
 import Site from './modules/site.js';
 
-let recActive = false;
+let inputActive = false;
 
 export default class Events {
     static init() {
