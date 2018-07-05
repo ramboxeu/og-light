@@ -49,11 +49,12 @@
 
 @keyframes pop-up {
     0% {
+        background: rgb(255, 111, 0);
         bottom: 0;
     }
     100% {
         bottom: 64px;
-        background: rgba(255, 255, 255, 0);
+        background: rgba(255, 111, 0, 0);
         box-shadow: 0px 0px 0px rgba(255, 255, 255, 0);
     }
 }
@@ -216,4 +217,8 @@
 #finished-input {
     font-size: 20px;
     text-align: center;
+}
+
+.disabled-orange {
+    background: rgb(255, 111, 0);
 }

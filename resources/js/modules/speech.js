@@ -1,4 +1,5 @@
 import Site from './site.js'
+import StringOp from './stringop.js';
 
 let utter;
 let rec;
@@ -84,10 +85,23 @@ class SpeechToText {
 let recActive = false;
 let kbActive = false;
 let result = "";
+let autoEnd = true;
+
+// Timeouts
+let setInvisibleKB;
+let endSpeech;
+let restoreSpeechKBBtns1;
+
+let setInvisibleSpeech;
+let restoreSpeechKBBtns2;
+let endKB;
+
 class Functions {
     static toggleSpeech() {
         if (!recActive) {
+            if (kbActive) this.onKBInactive();
             this.onRecActive();
+
         }
         else {
             this.onRecInactive();
@@ -109,6 +123,9 @@ class Functions {
         document.getElementById("keyboard-btn").classList.remove("pop-down");
         document.getElementById("keyboard-btn").classList.add("pop-up-no-wave");
 
+        document.getElementById("keyboard-btn").classList.add("disabled");
+        document.getElementById("keyboard-btn").classList.add("disabled-orange");
+
         document.getElementById("keyboard-icon").classList.remove("fade-in");
         document.getElementById("keyboard-icon").classList.add("fade-out");
 
@@ -124,11 +141,12 @@ class Functions {
 
         document.getElementById("speech-result").innerHTML = "Listening...";
 
-        setTimeout(function() {
+        setInvisibleKB = setTimeout(function() {
             document.getElementById("keyboard-btn").classList.add("invisible");
         }, 300);
 
         recActive = true;
+        autoEnd = true;
 
         SpeechToText.record(
             // Result
@@ -139,10 +157,13 @@ class Functions {
             // Error
             function(event) {
                 console.log(`Error: ` + event.error);
+                if (event.error == `aborted`) {
+                    autoEnd = false;
+                }
             },
             // End
             function(event) {
-                document.querySelector(`#finished-input`).innerHTML = result;
+                document.querySelector(`#finished-input`).innerHTML = StringOp.SentenceCase(result) + `.`;
                 Functions.onRecInactive();
             },
             // No audio
@@ -157,6 +178,12 @@ class Functions {
     }
 
     static onRecInactive() {
+        clearTimeout(setInvisibleKB);
+
+        if (!autoEnd) {
+            document.querySelector(`#finished-input`).innerHTML = "";
+        }
+
         document.getElementById("speech-btn").classList.remove("pop-up");
         document.getElementById("speech-btn").classList.add("pop-down");
 
@@ -182,7 +209,7 @@ class Functions {
 
         document.getElementById("keyboard-btn").classList.remove("invisible");
 
-        setTimeout(function() {
+        endSpeech = setTimeout(function() {
             document.getElementById("speech-result").classList.remove("visible");
             document.getElementById("speech-result").classList.add("invisible");
             if (document.getElementById("input-container").clientHeight > 65) {
@@ -190,9 +217,11 @@ class Functions {
                 document.getElementById("input-container").classList.add("speech-box");
             }
             document.getElementById("speech-result").innerHTML = "";
+            document.getElementById("keyboard-btn").classList.remove("disabled");
+            document.getElementById("keyboard-btn").classList.remove("disabled-orange");
         }, 300);
 
-        setTimeout(function() {
+        restoreSpeechKBBtns1 = setTimeout(function() {
             Site.getTooltipsOn("speech-btn")[0].tooltipEl.classList.remove("invisible");
             Site.getTooltipsOn("keyboard-btn")[0].tooltipEl.classList.remove("invisible");
         }, 350);
@@ -204,6 +233,7 @@ class Functions {
 
     static toggleKeyboard() {
         if (!kbActive) {
+            if (recActive) this.onRecInactive();
             this.onKBActive();
         }
         else {
@@ -226,6 +256,9 @@ class Functions {
         document.getElementById("keyboard-btn").classList.remove("pop-down");
         document.getElementById("keyboard-btn").classList.add("pop-up-no-wave");
 
+        document.getElementById("speech-btn").classList.add("disabled");
+        document.getElementById("speech-btn").classList.add("disabled-orange");
+
         document.getElementById("mic-icon").classList.remove("fade-in");
         document.getElementById("mic-icon").classList.add("fade-out");
 
@@ -239,7 +272,7 @@ class Functions {
         Site.getTooltipsOn("speech-btn")[0].tooltipEl.classList.add("invisible");
         Site.getTooltipsOn("keyboard-btn")[0].tooltipEl.classList.add("invisible");
 
-        setTimeout(function() {
+        setInvisibleSpeech = setTimeout(function() {
             document.getElementById("speech-btn").classList.add("invisible");
         }, 300);
 
@@ -247,6 +280,7 @@ class Functions {
     }
 
     static onKBInactive() {
+        clearTimeout(setInvisibleSpeech);
         document.getElementById("speech-btn").classList.remove("pop-up");
         document.getElementById("speech-btn").classList.add("pop-down");
 
@@ -272,7 +306,7 @@ class Functions {
 
         document.getElementById("speech-btn").classList.remove("invisible");
 
-        setTimeout(function() {
+        endKB = setTimeout(function() {
             document.getElementById("speech-result").classList.remove("visible");
             document.getElementById("speech-result").classList.add("invisible");
             if (document.getElementById("input-container").clientHeight > 65) {
@@ -280,9 +314,11 @@ class Functions {
                 document.getElementById("input-container").classList.add("speech-box");
             }
             document.getElementById("speech-result").innerHTML = "";
+            document.getElementById("speech-btn").classList.remove("disabled");
+            document.getElementById("speech-btn").classList.remove("disabled-orange");
         }, 300);
 
-        setTimeout(function() {
+        restoreSpeechKBBtns2 = setTimeout(function() {
             Site.getTooltipsOn("speech-btn")[0].tooltipEl.classList.remove("invisible");
             Site.getTooltipsOn("keyboard-btn")[0].tooltipEl.classList.remove("invisible");
         }, 350);
