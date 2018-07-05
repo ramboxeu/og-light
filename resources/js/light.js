@@ -1,6 +1,7 @@
 import anims from './modules/animations.js';
 import {TextToSpeech, SpeechToText} from './modules/speech.js';
 import Events from './events.js';
+import Site from './modules/site.js';
 
 class Light {
     // Main point
@@ -18,6 +19,7 @@ making your life brighter since 2018
 by Rambox & Monczak
         `);
         console.info(`Starting...`);
+        Site.init({auto: true});
         Events.init();
         TextToSpeech.init();
         SpeechToText.init();

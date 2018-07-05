@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="shortcut icon" href="resources/img/light-logo-32x32.png" type="image/png">
 
+
+
     <title>Light - v 1.0</title>
 </head>
 <body>
@@ -36,12 +38,12 @@
     </div>
 
     <div class="row snap-bottom-20">
-        <div class="col s4 offset-s4 amber darken-4 custom-center round-border z-depth-2 speech-box">
-            <div style="position: absolute;">
-                <a id="speech-btn" class="speech-btn btn-floating btn-large amber darken-4 small-margin">
+        <div id="input-container" class="col s4 offset-s4 amber darken-4 custom-center round-border z-depth-2">
+            <div id="input-btn-container" style="position: absolute;">
+                <a id="speech-btn" class="speech-btn btn-floating btn-large amber darken-4 small-margin tooltipped" data-position="top" data-tooltip="Talk to Light">
                     <i id="mic-icon" class="large material-icons">mic</i>
                 </a>
-                <a id="keyboard-btn" class="btn-floating btn-large amber darken-4 small-margin">
+                <a id="keyboard-btn" class="btn-floating btn-large amber darken-4 small-margin tooltipped" data-position="top" data-tooltip="Use keyboard instead">
                     <i id="keyboard-icon" class="large material-icons">keyboard</i>
                 </a>
             </div>
@@ -61,6 +63,7 @@
         </ul>
     </div>
 -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script src="resources/js/light.js" type="module"></script>
     <script>

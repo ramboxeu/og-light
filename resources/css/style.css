@@ -168,6 +168,37 @@
     }
 }
 
+.visible {
+    visibility: visible !important;
+}
+
+.invisible {
+    visibility: hidden !important;
+}
+
+.invisible-min {
+    visibility: hidden;
+    transform: scale(0);
+}
+
+.speech-box {
+    animation: fixed-speech-box 0.18s forwards;
+}
+
+@keyframes fixed-speech-box {
+    0% {
+        height: 100px;
+    }
+    100% {
+        height: 65px;
+    }
+}
+
+.flexible-speech-box {
+    height: auto;
+    transition: height 0.3s ease;
+}
+
 .speech-result {
     text-align: center;
     min-height: 65px;

@@ -1,4 +1,7 @@
-import {TextToSpeech, SpeechToText, Functions} from './modules/speech.js';
+import {Functions} from './modules/speech.js';
+import Site from './modules/site.js';
+
+let recActive = false;
 
 export default class Events {
     static init() {
