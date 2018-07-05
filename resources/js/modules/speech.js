@@ -163,7 +163,9 @@ class Functions {
             },
             // End
             function(event) {
-                document.querySelector(`#finished-input`).innerHTML = StringOp.SentenceCase(result) + `.`;
+                // YEAH GRAMMAR
+                let finalResult = StringOp.sentenceCase(result) + (StringOp.isQuestion(result) ? `?` : `.`);
+                document.querySelector(`#finished-input`).innerHTML = finalResult;
                 Functions.onRecInactive();
             },
             // No audio
