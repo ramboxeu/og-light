@@ -22,6 +22,12 @@
 .snap-bottom {
     position: fixed;
     width: 100%;
+    bottom: 55px;
+}
+
+.snap-bottom-20 {
+    position: fixed;
+    width: 100%;
     bottom: -20px;
 }
 
@@ -174,4 +180,9 @@
 
 .speech-result-finished {
     animation: fade-out 0.3s ease-out forwards;
+}
+
+#finished-input {
+    font-size: 20px;
+    text-align: center;
 }

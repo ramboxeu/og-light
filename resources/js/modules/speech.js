@@ -40,7 +40,7 @@ class SpeechToText {
         rec = new webkitSpeechRecognition();
         rec.lang = "en-US";
 
-        rec.onstart = function() {
+        rec.onstart = () => {
             console.log(`Recognizing speech`);
             recognizingSpeech = true;
         }
@@ -52,7 +52,7 @@ class SpeechToText {
     static record(onRecResult, onRecError, onRecEnd, onRecNoAudio, onRecNoMatch) {
         var result = {results: []};
 
-        rec.onresult = function(event) {
+        rec.onresult = (event) => {
             result = event;
             onRecResult(event);
             if (event.results[0].isFinal) {
@@ -61,12 +61,12 @@ class SpeechToText {
             }
         }
         rec.onerror = onRecError;
-        rec.onend = function() {
+        rec.onend = () => {
             recognizingSpeech = false;
             console.log(`Recognition finished (end)`);
             onRecEnd();
         }
-        rec.onsoundend = function() {
+        rec.onsoundend = () => {
             if (result.results === undefined || result.results.length == 0) onRecNoAudio();
         }
         rec.onnomatch = onRecNoMatch();
@@ -79,4 +79,84 @@ class SpeechToText {
     }
 }
 
-export {TextToSpeech, SpeechToText};
+let recActive = false;
+let result = "";
+class Functions {
+    static toggleSpeech(){
+        if (!recActive) {
+            this.onRecActive();
+        }
+        else {
+            this.onRecInactive();
+        }
+    }
+
+    static onRecActive(){
+        document.getElementById("speech-btn").classList.remove("pop-down");
+        document.getElementById("speech-btn").classList.add("pop-up");
+
+        document.getElementById("mic-icon").classList.remove("mic-fade-white");
+        document.getElementById("mic-icon").classList.add("mic-fade-orange");
+
+        document.getElementById("keyboard-btn").classList.remove("pop-down");
+        document.getElementById("keyboard-btn").classList.add("pop-up-no-wave");
+
+        document.getElementById("keyboard-icon").classList.remove("fade-in");
+        document.getElementById("keyboard-icon").classList.add("fade-out");
+
+        document.getElementById("speech-result").classList.remove("speech-result-finished");
+        document.getElementById("speech-result").classList.add("speech-result-begin");
+
+        document.getElementById("speech-result").innerHTML = "Listening...";
+
+        recActive = true;
+
+        SpeechToText.record(
+            // Result
+            function(event){
+                result = event.results[0][0].transcript;
+                document.querySelector(`#speech-result`).innerHTML = result;
+            },
+            // Error
+            function(event) {
+                console.log(`Error: ` + event.error);
+            },
+            // End
+            function(event){
+                document.querySelector(`#finished-input`).innerHTML = result;
+                Functions.toggleSpeech();
+            },
+            // No audio
+            function(event) {
+                console.log(`No audio detected`);
+            },
+            // No match
+            function(event) {
+                console.log(`No match`);
+            }
+        );
+    }
+
+    static onRecInactive(){
+        document.getElementById("speech-btn").classList.remove("pop-up");
+        document.getElementById("speech-btn").classList.add("pop-down");
+
+        document.getElementById("mic-icon").classList.remove("mic-fade-orange");
+        document.getElementById("mic-icon").classList.add("mic-fade-white");
+
+        document.getElementById("keyboard-btn").classList.remove("pop-up-no-wave");
+        document.getElementById("keyboard-btn").classList.add("pop-down");
+
+        document.getElementById("keyboard-icon").classList.remove("fade-in");
+        document.getElementById("keyboard-icon").classList.add("fade-out");
+
+        document.getElementById("speech-result").classList.remove("speech-result-begin");
+        document.getElementById("speech-result").classList.add("speech-result-finished");
+
+        recActive = false;
+
+        SpeechToText.stop();
+    }
+} 
+
+export {TextToSpeech, SpeechToText, Functions};
