@@ -1,7 +1,7 @@
 import {TextToSpeech, SpeechToText} from './modules/speech.js';
 import Site from './modules/site.js';
 
-let recActive = false;
+let inputActive = false;
 
 export default class Events {
     static init() {
@@ -13,9 +13,7 @@ export default class Events {
 
     static registerClickEvents() {
         document.getElementById("speech-btn").addEventListener("click", function() {
-            console.info("Button clicked!");
-
-            function onRecActive() {
+            function onActive() {
                 document.getElementById("speech-btn").classList.remove("pop-down");
                 document.getElementById("speech-btn").classList.add("pop-up");
 
@@ -23,6 +21,9 @@ export default class Events {
 
                 document.getElementById("mic-icon").classList.remove("mic-fade-white");
                 document.getElementById("mic-icon").classList.add("mic-fade-orange");
+
+                document.getElementById("mic-icon").classList.remove("fade-in");
+                document.getElementById("mic-icon").classList.remove("fade-out");
 
                 document.getElementById("keyboard-btn").classList.remove("pop-down");
                 document.getElementById("keyboard-btn").classList.add("pop-up-no-wave");
@@ -42,7 +43,7 @@ export default class Events {
 
                 document.getElementById("speech-result").innerHTML = "Listening...";
 
-                recActive = true;
+                inputActive = true;
 
                 SpeechToText.record(
                     // Result
@@ -55,7 +56,7 @@ export default class Events {
                     },
                     // End
                     function(event) {
-                        onRecInactive();
+                        onInactive();
                     },
                     // No audio
                     function(event) {
@@ -69,7 +70,7 @@ export default class Events {
                 );
             }
 
-            function onRecInactive() {
+            function onInactive() {
                 document.getElementById("speech-btn").classList.remove("pop-up");
                 document.getElementById("speech-btn").classList.add("pop-down");
 
@@ -77,6 +78,9 @@ export default class Events {
 
                 document.getElementById("mic-icon").classList.remove("mic-fade-orange");
                 document.getElementById("mic-icon").classList.add("mic-fade-white");
+
+                document.getElementById("mic-icon").classList.remove("fade-in");
+                document.getElementById("mic-icon").classList.remove("fade-out");
 
                 document.getElementById("keyboard-btn").classList.remove("pop-up-no-wave");
                 document.getElementById("keyboard-btn").classList.add("pop-down");
@@ -105,16 +109,102 @@ export default class Events {
                     Site.getTooltipsOn("keyboard-btn")[0].tooltipEl.classList.remove("invisible");
                 }, 350);
 
-                recActive = false;
+                inputActive = false;
 
                 SpeechToText.stop();
             }
 
-            if (!recActive) {
-                onRecActive();
+            if (!inputActive) {
+                onActive();
             }
             else {
-                onRecInactive();
+                onInactive();
+            }
+
+        }, true);
+
+        document.getElementById("keyboard-btn").addEventListener("click", function() {
+            function onActive() {
+                document.getElementById("speech-btn").classList.remove("pop-down");
+                document.getElementById("speech-btn").classList.add("pop-up");
+
+                document.getElementById("speech-btn").classList.remove("tooltipped");
+
+                document.getElementById("keyboard-icon").classList.remove("mic-fade-white");
+                document.getElementById("keyboard-icon").classList.add("mic-fade-orange");
+
+                document.getElementById("keyboard-icon").classList.remove("fade-in");
+                document.getElementById("keyboard-icon").classList.remove("fade-out");
+
+                document.getElementById("keyboard-btn").classList.remove("pop-down");
+                document.getElementById("keyboard-btn").classList.add("pop-up-no-wave");
+
+                document.getElementById("mic-icon").classList.remove("fade-in");
+                document.getElementById("mic-icon").classList.add("fade-out");
+
+                document.getElementById("speech-result").classList.remove("speech-result-finished");
+                document.getElementById("speech-result").classList.add("speech-result-begin");
+                document.getElementById("speech-result").classList.remove("invisible");
+                document.getElementById("speech-result").classList.add("visible");
+                document.getElementById("input-container").classList.remove("speech-box");
+                document.getElementById("input-container").classList.add("flexible-speech-box");
+
+                Site.getTooltipsOn("speech-btn")[0].tooltipEl.classList.add("invisible");
+                Site.getTooltipsOn("keyboard-btn")[0].tooltipEl.classList.add("invisible");
+
+                inputActive = true;
+
+            }
+
+            function onInactive() {
+                document.getElementById("speech-btn").classList.remove("pop-up");
+                document.getElementById("speech-btn").classList.add("pop-down");
+
+                document.getElementById("speech-btn").classList.add("tooltipped");
+
+                document.getElementById("keyboard-icon").classList.remove("mic-fade-orange");
+                document.getElementById("keyboard-icon").classList.add("mic-fade-white");
+
+                document.getElementById("keyboard-btn").classList.remove("pop-up-no-wave");
+                document.getElementById("keyboard-btn").classList.add("pop-down");
+
+                document.getElementById("keyboard-icon").classList.remove("fade-in");
+                document.getElementById("keyboard-icon").classList.remove("fade-out");
+
+                document.getElementById("mic-icon").classList.remove("fade-in");
+                document.getElementById("mic-icon").classList.add("fade-out");
+
+                document.getElementById("speech-result").classList.remove("speech-result-begin");
+                document.getElementById("speech-result").classList.add("speech-result-finished");
+
+                Site.getTooltipsOn("speech-btn")[0].close();
+                Site.getTooltipsOn("keyboard-btn")[0].close();
+
+                setTimeout(function() {
+                    document.getElementById("speech-result").classList.remove("visible");
+                    document.getElementById("speech-result").classList.add("invisible");
+                    if (document.getElementById("input-container").clientHeight > 65) {
+                        document.getElementById("input-container").classList.remove("flexible-speech-box");
+                        document.getElementById("input-container").classList.add("speech-box");
+                    }
+                    document.getElementById("speech-result").innerHTML = "";
+                }, 300);
+
+                setTimeout(function() {
+                    Site.getTooltipsOn("speech-btn")[0].tooltipEl.classList.remove("invisible");
+                    Site.getTooltipsOn("keyboard-btn")[0].tooltipEl.classList.remove("invisible");
+                }, 350);
+
+                inputActive = false;
+
+                SpeechToText.stop();
+            }
+
+            if (!inputActive) {
+                onActive();
+            }
+            else {
+                onInactive();
             }
 
         }, true);
