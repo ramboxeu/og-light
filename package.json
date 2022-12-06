@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-connect": "^5.5.0",
+    "gulp-connect": "^5.7.0",
     "gulp-deploy-git": "^0.5.3"
   },
   "scripts": {
